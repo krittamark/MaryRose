@@ -56,18 +56,18 @@
 	socket.on('element', message => {
 		switch (message.action) {
 			case "hideBar":
-				document.getElementById('A-Main').className = 'TeamA animate__animated';
+				document.getElementById('A-Main').className = 'TeamA TeamWrapper animate__animated';
 				document.getElementById('A-Main').classList.add('animate__slideOutUp')
-				document.getElementById('B-Main').className = 'TeamB animate__animated';
+				document.getElementById('B-Main').className = 'TeamB TeamWrapper animate__animated';
 				document.getElementById('B-Main').classList.add('animate__slideOutUp')
 				break;
 
 			case "showBar":
 				document.getElementById('A-Logo').src = `/uploads/LogoA.png?${new Date().getTime()}`;
 				document.getElementById('B-Logo').src = `/uploads/LogoB.png?${new Date().getTime()}`;
-				document.getElementById('A-Main').className = 'TeamA animate__animated';
+				document.getElementById('A-Main').className = 'TeamA TeamWrapper animate__animated';
 				document.getElementById('A-Main').classList.add('animate__slideInDown')
-				document.getElementById('B-Main').className = 'TeamB animate__animated';
+				document.getElementById('B-Main').className = 'TeamB TeamWrapper animate__animated';
 				document.getElementById('B-Main').classList.add('animate__slideInDown');
 				document.querySelectorAll('.content').forEach(element => {
 					element.className = 'content animate__animated';

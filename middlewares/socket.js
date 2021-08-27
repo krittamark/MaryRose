@@ -61,12 +61,22 @@ module.exports = (http) => {
 						"Sponsors": [
 							{
 								"Logo": {
-									"src": "/images/SKRLogo-NoBackground.png"
+									"src": "/uploads/sponsors/SKRLogo-NoBackground.png"
 								}
 							},
 							{
 								"Logo": {
-									"src": "/images/PRLogo-PinkWithText.png"
+									"src": "/uploads/sponsors/AVELogo-RedNoBackground.png"
+								}
+							},
+							{
+								"Logo": {
+									"src": "/uploads/sponsors/SKRStream.jpg"
+								}
+							},
+							{
+								"Logo": {
+									"src": "/uploads/sponsors/PRLogo-PinkWithText.png"
 								}
 							}
 						]
