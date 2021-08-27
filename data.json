@@ -1,1 +1,32 @@
-{"TeamA":{"Score":0,"Name":"SKR AVE"},"TeamB":{"Score":0,"Name":"SKR PR"},"Sponsors":[{"Logo":{"src":"/uploads/sponsors/SKRLogo-NoBackground.png"}},{"Logo":{"src":"/uploads/sponsors/PRLogo-PinkWithText.png"}}]}
+{
+	"TeamA": {
+		"Score": 0,
+		"Name": "SKR AVE"
+	},
+	"TeamB": {
+		"Score": 0,
+		"Name": "SKR PR"
+	},
+	"Sponsors": [
+		{
+			"Logo": {
+				"src": "/uploads/sponsors/SKRLogo-NoBackground.png"
+			}
+		},
+		{
+			"Logo": {
+				"src": "/uploads/sponsors/AVELogo-RedNoBackground.png"
+			}
+		},
+		{
+			"Logo": {
+				"src": "/uploads/sponsors/SKRStream.jpg"
+			}
+		},
+		{
+			"Logo": {
+				"src": "/uploads/sponsors/PRLogo-PinkWithText.png"
+			}
+		}
+	]
+}
