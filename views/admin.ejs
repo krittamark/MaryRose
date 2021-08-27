@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title>Mary Rose - Admin</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<link rel="stylesheet" href="/css/basic.min.css">
+	<link rel="stylesheet" href="/css/dropzone.min.css">
+</head>
+
+<body>
+	<div id="app">
+		<h1></h1>
+		<div>
+			<h2>Team Manager</h2>
+			<div>
+				<span>Score TeamA</span><span id=""></span>
+				<button id="ScoreA-Decrease"
+					onclick="updateScore('A', Number(document.getElementById('ScoreA').value) - 1)">-</button>
+				<input id="ScoreA" type="number" onchange="updateScore('A', this.value)">
+				<button id="ScoreA-Increase"
+					onclick="updateScore('A', Number(document.getElementById('ScoreA').value) + 1)">+</button>
+				<input type="text" id="NameA" onchange="updateName('A', this.value);">
+			</div>
+			<div>
+				<span>Score TeamB</span><span id=""></span>
+				<button id="ScoreB-Decrease"
+				onclick="updateScore('B', Number(document.getElementById('ScoreB').value) - 1)">-</button>
+				<input id="ScoreB" type="number" onchange="updateScore('B', this.value)">
+				<button id="ScoreB-Increase"
+				onclick="updateScore('B', Number(document.getElementById('ScoreB').value) + 1)">+</button>
+				<input type="text" id="NameB" onchange="updateName('B', this.value);">
+			</div>
+			<button id="reset" onclick="socket.emit('resetSystem', 'score')">Reset Score</button>
+			<button id="reset" onclick="socket.emit('resetSystem')">Reset System</button>
+			<form class="dropzone" id="LogoA-Upload">
+				<input type="file" name="file" style="display: none;"/>
+			</form>
+			<form class="dropzone" id="LogoB-Upload">
+				<input type="file" name="file" style="display: none;"/>
+			</form>
+			<button id="hideBar" onclick="socket.emit('element', {action: 'hideBar'})">HideBar</button>
+			<button id="showBar" onclick="socket.emit('element', {action: 'showBar'})">ShowBar</button>
+			<button id="hideSpon" onclick="socket.emit('element', {action: 'hideSpon'})">HideSpon</button>
+			<button id="showSpon" onclick="socket.emit('element', {action: 'showSpon'})">ShowSpon</button>
+		</div>
+		
+		<div>
+			<h2>SponsorSection</h2>
+			<form class="dropzone" id="sponsorUpload">
+				<input type="file" name="file" style="display: none;"/>
+			</form>
+		</div>
+	</div>
+</body>
+<script src="/js/socket.io.min.js"></script>
+<script src="/js/dropzone.min.js"></script>
+<script>
+	const LogoAUpload = new Dropzone("#LogoA-Upload", {
+		url: `/api/logo/A`
+	});
+	const LogoBUpload = new Dropzone("#LogoB-Upload", {
+		url: `/api/logo/B`
+	});
+	const SponsorUpload = new Dropzone("#sponsorUpload", {
+		url: "/api/sponsors"
+	});
+</script>
+<script>
+	const socket = io();
+	const updateScore = (Team, Value) => {
+		socket.emit('updateScore', {
+			target: Team,
+			value: Value
+		});
+	}
+	const updateName = (Team, Value) => {
+		socket.emit('updateName', {
+			target: Team,
+			value: Value
+		});
+	}
+
+	socket.on('syncData', data => {
+		ScoreA.value = data.TeamA.Score;
+		ScoreB.value = data.TeamB.Score;
+		NameA.value = data.TeamA.Name;
+		NameB.value = data.TeamB.Name;
+	});
+</script>
+
+</html>

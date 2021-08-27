@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: "Titillium Web", Arial, Helvetica, sans-serif;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+}
+
+.centerScore {
+	position: relative;
+	height: 47px;
+	width: 56.5%;
+	top: 86px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	overflow: hidden;
+}
+.TeamWrapper {
+	position: absolute;
+	width: 466px;
+	height: 47px;
+}
+.TeamA {
+	margin-left: 59px;
+}
+.content {
+	height: 47px;
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	color: #fff;
+	font-size: 30px;
+	font-weight: bold;
+}
+.logo {
+	height: calc(47px - 10px);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.team {
+	position: absolute;
+	height: inherit;
+	top:0;
+	left: 0;
+	right: 0;
+}
+.team > div {
+	position: absolute;
+}
+.ScoreWrapper {
+	right: 0;
+}
+.LogoWrapper {
+	right: 70px;
+}
+.NameWrapper {
+	right: 140px;
+}
+.content > :nth-child(2) {
+	position: absolute;
+    right: 70px;
+    width: 120px;
+    height: inherit;
+}
+.TeamB .content > :nth-child(2) {
+	position: absolute;
+    left: 70px;
+    width: 120px;
+    height: inherit;
+}
+
+.TeamB {
+	margin-left: 564px;
+}
+.TeamB > .team {
+	transform: scaleX(-1);
+}
+
+#A-Score {
+	position: absolute;
+	right: 0;
+	height: inherit;
+	width: 117px;
+}
+#A-Name {
+	height: inherit;
+	position: absolute;
+	right: 169px;
+	width: 310px;
+	text-align: end;
+}
+#B-Score {
+	position: absolute;
+    left: 0;
+    height: inherit;
+    width: 117px;
+}
+#B-Name {
+	height: inherit;
+    position: absolute;
+    left: 169px;
+    width: 310px;
+	text-align: start;
+}
+
+
+.sponsorSection {
+	width: 150px;
+	height: 45px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+}
+.sponsorSection > img {
+	height: 45px;
+}
+.sponsor-item {
+	position: absolute;
+	left: 0;
+}

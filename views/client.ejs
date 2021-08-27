@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mary Rose</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<link rel="stylesheet" href="/css/screenClient.css">
+</head>
+
+<body>
+	<div class="centerScore">
+		<div class="TeamA TeamWrapper animate__animated animate__slideInDown" id="A-Main">
+			<div class="team">
+				<div class="ScoreWrapper"><img src="/images/Score.svg"></div>
+				<div class="LogoWrapper"><img src="/images/Logo.svg"></div>
+				<div class="NameWrapper"><img src="/images/Name.svg"></div>
+			</div>
+
+			<div class="content animate__animated animate__slideInDown">
+				<span class="score" id="A-Score"></span>
+				<span><img class="logo" id="A-Logo" src="/uploads/LogoA.png"></span>
+				<span class="name" id="A-Name"></span>
+			</div>
+		</div>
+
+		<div class="TeamB TeamWrapper animate__animated animate__slideInDown" id="B-Main">
+			<div class="team">
+				<div class="ScoreWrapper"><img src="/images/Score.svg"></div>
+				<div class="LogoWrapper"><img src="/images/Logo.svg"></div>
+				<div class="NameWrapper"><img src="/images/Name.svg"></div>
+			</div>
+
+			<div class="content animate__animated animate__slideInDown">
+				<span class="score" id="B-Score"></span>
+				<span><img class="logo" id="B-Logo" src="/uploads/LogoB.png"></span>
+				<span class="name" id="B-Name"></span>
+			</div>
+		</div>
+	</div>
+	<div class="sponsorSection"></div>
+</body>
+<script src="/js/axios.min.js"></script>
+<script src="/js/socket.io.min.js"></script>
+<script>
+	const socket = io();
+	socket.on('syncData', data => {
+		document.getElementById('A-Score').innerText = data.TeamA.Score;
+		document.getElementById('A-Name').innerText = data.TeamA.Name;
+		document.getElementById('B-Score').innerText = data.TeamB.Score;
+		document.getElementById('B-Name').innerText = data.TeamB.Name;
+	});
+
+	socket.on('element', message => {
+		switch (message.action) {
+			case "hideBar":
+				document.getElementById('A-Main').className = 'TeamA animate__animated';
+				document.getElementById('A-Main').classList.add('animate__slideOutUp')
+				document.getElementById('B-Main').className = 'TeamB animate__animated';
+				document.getElementById('B-Main').classList.add('animate__slideOutUp')
+				break;
+
+			case "showBar":
+				document.getElementById('A-Logo').src = `/uploads/LogoA.png?${new Date().getTime()}`;
+				document.getElementById('B-Logo').src = `/uploads/LogoB.png?${new Date().getTime()}`;
+				document.getElementById('A-Main').className = 'TeamA animate__animated';
+				document.getElementById('A-Main').classList.add('animate__slideInDown')
+				document.getElementById('B-Main').className = 'TeamB animate__animated';
+				document.getElementById('B-Main').classList.add('animate__slideInDown');
+				document.querySelectorAll('.content').forEach(element => {
+					element.className = 'content animate__animated';
+					setTimeout(() => {
+						element.classList.add('animate__slideInDown');
+					}, 100);
+				});
+				break;
+
+			default:
+				break;
+		}
+	})
+</script>
+<script>
+
+	axios.get('/api/SyncData')
+		.then(res => {
+			res.data.Sponsors.forEach((element, index) => {
+				const parent = document.querySelector('.sponsorSection');
+
+				const img = document.createElement('img');
+				img.src = element.Logo.src;
+				img.classList.add('sponsor-item', 'animate__animated');
+				if (index == 0) {
+					img.classList.a = img.classList.add('animate__fadeInRight');
+					parent.append(img);
+				} else {
+					img.style = 'display: none';
+					parent.append(img);
+				}
+			});
+		})
+
+	let currentSponsor = 0;
+
+	function initSponsor() {
+		const sponsorList = document.querySelectorAll('.sponsor-item');
+		let prevSponsor = currentSponsor;
+		if (sponsorList.length === currentSponsor + 1) {
+			currentSponsor = 0;
+		} else {
+			currentSponsor++;
+		}
+		showSponsor(currentSponsor, prevSponsor);
+	}
+
+	function showSponsor(currentSponsor, prevSponsor) {
+		const sponsorList = document.querySelectorAll('.sponsor-item');
+		sponsorList[prevSponsor].classList.remove('animate__fadeInRight');
+		sponsorList[prevSponsor].classList.add('animate__fadeOutRight');
+		setTimeout(() => {
+			sponsorList[prevSponsor].classList.remove('animate__fadeOutRight');
+			sponsorList[currentSponsor].style = 'display: block;';
+			sponsorList[currentSponsor].classList.add('animate__fadeInRight');
+			sponsorList[prevSponsor].style = 'display: none;';
+		}, 1000);
+	}
+
+	setTimeout(() => {
+		setInterval(() => {
+			initSponsor()
+		}, 5000);
+	}, 100);
+
+</script>
+
+</html>
