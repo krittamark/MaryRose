@@ -9,6 +9,7 @@ routes.use(bodyParser.urlencoded({ extended: true }));
 routes.use(bodyParser.json());
 
 
+routes.get('/', require('./screen/client'));
 routes.use('/screen', screen);
 routes.use('/api', api);
 
