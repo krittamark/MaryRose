@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
+body {
+	font-family: "Titillium Web", Arial, Helvetica, sans-serif;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+	background: rgba(0, 0, 0, 0);
+}
+.dropzone {
+	border-radius: 10px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

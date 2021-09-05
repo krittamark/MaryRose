@@ -7,51 +7,120 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 	<title>Mary Rose - Admin</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-	<link rel="stylesheet" href="/css/basic.min.css">
+	<link rel="stylesheet" href="/css/master.css">
 	<link rel="stylesheet" href="/css/dropzone.min.css">
+	<link rel="stylesheet" href="/css/uikit.min.css">
+	<script src="/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit-icons.min.js"></script>
+
 </head>
 
 <body>
-	<div id="app">
-		<h1></h1>
-		<div>
-			<h2>Team Manager</h2>
-			<div>
-				<span>Score TeamA</span><span id=""></span>
-				<button id="ScoreA-Decrease"
-					onclick="updateScore('A', Number(document.getElementById('ScoreA').value) - 1)">-</button>
-				<input id="ScoreA" type="number" onchange="updateScore('A', this.value)">
-				<button id="ScoreA-Increase"
-					onclick="updateScore('A', Number(document.getElementById('ScoreA').value) + 1)">+</button>
-				<input type="text" id="NameA" onchange="updateName('A', this.value);">
+	<div class="uk-container">
+		<div class="uk-text-lead">Admin Settings</div>
+		<ul uk-tab uk-switcher>
+			<li class="uk-active"><a href="#">Teams Section</a></li>
+			<li><a href="#">Sponsor Section</a></li>
+		</ul>
+		<ul class="uk-switcher">
+			<li>
+
+				<div>
+					<span>Team A : </span><span id="NameA"></span>
+					<span class="uk-link" href="#TeamA-Editor" uk-toggle onclick="">
+						<span uk-icon="icon: pencil"></span>
+						<span>Edit</span>
+					</span>
+					<button id="ScoreA-Decrease" class="uk-button uk-button-secondary uk-button-small"
+						onclick="updateScore('A', Number(document.getElementById('ScoreA').value) - 1)">-</button>
+					<input id="ScoreA" class="uk-input uk-form-small uk-form-width-xsmall" type="number"
+						onchange="updateScore('A', this.value)">
+					<button id="ScoreA-Increase" class="uk-button uk-button-secondary uk-button-small"
+						onclick="updateScore('A', Number(document.getElementById('ScoreA').value) + 1)">+</button>
+					
+				</div>
+				<div>
+					<span>Team B : </span><span id="NameB"></span>
+					<span class="uk-link" href="#TeamB-Editor" uk-toggle onclick="">
+						<span uk-icon="icon: pencil"></span>
+						<span>Edit</span>
+					</span>
+					<button id="ScoreB-Decrease" class="uk-button uk-button-secondary uk-button-small"
+						onclick="updateScore('B', Number(document.getElementById('ScoreB').value) - 1)">-</button>
+					<input id="ScoreB" class="uk-input uk-form-small uk-form-width-xsmall" type="number"
+						onchange="updateScore('B', this.value)">
+					<button id="ScoreB-Increase" class="uk-button uk-button-secondary uk-button-small"
+						onclick="updateScore('B', Number(document.getElementById('ScoreB').value) + 1)">+</button>
+					
+				</div>
+				<button id="reset" class="uk-button uk-button-danger"
+					onclick="socket.emit('resetSystem', 'score')">Reset Score</button>
+				
+				<button id="hideBar" class="uk-button uk-button-default"
+					onclick="socket.emit('element', {action: 'hideBar'})">HideBar</button>
+				<button id="showBar" class="uk-button uk-button-default"
+					onclick="socket.emit('element', {action: 'showBar'})">ShowBar</button>
+				<button id="hideSpon" class="uk-button uk-button-default"
+					onclick="socket.emit('element', {action: 'hideSpon'})">HideSpon</button>
+				<button id="showSpon" class="uk-button uk-button-default"
+					onclick="socket.emit('element', {action: 'showSpon'})">ShowSpon</button>
+			</li>
+			<li>
+				<form class="dropzone" id="sponsorUpload">
+					<input type="file" name="file" style="display: none;" />
+				</form>
+			</li>
+		</ul>
+	</div>
+
+	<div id="TeamA-Editor" uk-modal>
+		<div class="uk-modal-dialog">
+
+			<button class="uk-modal-close-default" type="button" uk-close></button>
+
+			<div class="uk-modal-header">
+				<span class="uk-modal-title">Team A Editor</span>
 			</div>
-			<div>
-				<span>Score TeamB</span><span id=""></span>
-				<button id="ScoreB-Decrease"
-				onclick="updateScore('B', Number(document.getElementById('ScoreB').value) - 1)">-</button>
-				<input id="ScoreB" type="number" onchange="updateScore('B', this.value)">
-				<button id="ScoreB-Increase"
-				onclick="updateScore('B', Number(document.getElementById('ScoreB').value) + 1)">+</button>
-				<input type="text" id="NameB" onchange="updateName('B', this.value);">
+
+			<div class="uk-modal-body" uk-overflow-auto>
+				<div>
+					<span>Name : </span>
+					<input type="text" id="A-NameValue" class="uk-input uk-form-width-medium uk-form-small">
+				</div>
+				<form class="dropzone" id="LogoA-Upload">
+					<input type="file" name="file" style="display: none;" />
+				</form>
 			</div>
-			<button id="reset" onclick="socket.emit('resetSystem', 'score')">Reset Score</button>
-			<form class="dropzone" id="LogoA-Upload">
-				<input type="file" name="file" style="display: none;"/>
-			</form>
-			<form class="dropzone" id="LogoB-Upload">
-				<input type="file" name="file" style="display: none;"/>
-			</form>
-			<button id="hideBar" onclick="socket.emit('element', {action: 'hideBar'})">HideBar</button>
-			<button id="showBar" onclick="socket.emit('element', {action: 'showBar'})">ShowBar</button>
-			<button id="hideSpon" onclick="socket.emit('element', {action: 'hideSpon'})">HideSpon</button>
-			<button id="showSpon" onclick="socket.emit('element', {action: 'showSpon'})">ShowSpon</button>
+
+			<div class="uk-modal-footer uk-text-right">
+				<button class="uk-button uk-button-primary uk-modal-close" type="button" onclick="updateName('A', document.getElementById('A-NameValue').value);">Save</button>
+			</div>
+
 		</div>
-		
-		<div>
-			<h2>SponsorSection</h2>
-			<form class="dropzone" id="sponsorUpload">
-				<input type="file" name="file" style="display: none;"/>
-			</form>
+	</div>
+	<div id="TeamB-Editor" uk-modal>
+		<div class="uk-modal-dialog">
+
+			<button class="uk-modal-close-default" type="button" uk-close></button>
+
+			<div class="uk-modal-header">
+				<span class="uk-modal-title">Team B Editor</span>
+			</div>
+
+			<div class="uk-modal-body" uk-overflow-auto>
+				<div>
+					<span>Name : </span>
+					<input type="text" id="B-NameValue" class="uk-input uk-form-width-medium uk-form-small">
+				</div>
+				<form class="dropzone" id="LogoB-Upload">
+					<input type="file" name="file" style="display: none;" />
+				</form>
+			</div>
+
+			<div class="uk-modal-footer uk-text-right">
+				<button class="uk-button uk-button-primary uk-modal-close" type="button" onclick="updateName('B', document.getElementById('B-NameValue').value);">Save</button>
+			</div>
+
 		</div>
 	</div>
 </body>
@@ -61,6 +130,9 @@
 	const LogoAUpload = new Dropzone("#LogoA-Upload", {
 		url: `/api/logo/A`
 	});
+	LogoAUpload.on("complete", function (file) {
+		LogoAUpload.removeAllFiles(true);
+	})
 	const LogoBUpload = new Dropzone("#LogoB-Upload", {
 		url: `/api/logo/B`
 	});
@@ -86,8 +158,10 @@
 	socket.on('syncData', data => {
 		ScoreA.value = data.TeamA.Score;
 		ScoreB.value = data.TeamB.Score;
-		NameA.value = data.TeamA.Name;
-		NameB.value = data.TeamB.Name;
+		NameA.innerText = data.TeamA.Name;
+		NameB.innerText = data.TeamB.Name;
+		document.getElementById('A-NameValue').value = data.TeamA.Name;
+		document.getElementById('B-NameValue').value = data.TeamB.Name;
 	});
 </script>
 
