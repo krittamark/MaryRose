@@ -12,9 +12,13 @@
 				<span>Name : </span>
 				<input type="text" id="<%= team %>-NameValue" class="uk-input uk-form-width-medium uk-form-small">
 			</div>
-			<form class="dropzone" id="Logo<%= team %>-Upload">
+			<form class="dropzone uk-margin-small" id="Logo<%= team %>-Upload">
 				<input type="file" name="file" style="display: none;" />
 			</form>
+				<span uk-icon="icon: warning" class="uk-text-warning"></span>
+				<span class="uk-text-bold uk-text-warning">Warning! </span>
+				<span class="uk-text-light">Please re-show the score bar to reload the logo's images.</span>
+			
 		</div>
 
 		<div class="uk-modal-footer uk-text-right">
