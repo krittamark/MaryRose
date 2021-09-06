@@ -1,39 +1,126 @@
+<style>
+	.uk-list>li {
+		margin: 22px !important;
+		height: 70px;
+	}
+</style>
 <div class="uk-card uk-card-default uk-card-body">
-	<h3 class="uk-card-title">Sponsor Settings</h3>
-	<ul class="uk-list uk-list-divider" id="list">
-		<li>We're working hard to make this feature available.</li>
+	<div>
+		<h3 class="uk-card-title uk-float-left">Sponsor Settings</h3>
+		<button class="uk-button uk-button-primary uk-float-right" type="button" uk-tooltip="This feature is not available">Save</button>
+	</div><div class="uk-clearfix"></div>
+	<ul class="uk-list uk-list-divider" style="width: 50%;margin: 0 auto;" id="list">
 	</ul>
+
+	<form class="dropzone uk-margin-small" id="sponsorUpload">
+		<input type="file" name="file" style="display: none;" />
+	</form>
+
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.1/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.1/utils/Draggable.min.js"></script>
 <script>
-	var list = document.getElementById('list')
-	var base, randomized, dragging, draggedOver;
+	axios.get('/api/SyncData')
+		.then((response) => {
+			response.data.Sponsors.forEach(element => {
+				let node = document.createElement('li');
+				
+				let image = document.createElement('img');
+				image.src = element.Logo.src;
+				image.style = "height: 70px;";
 
-	const renderItems = (data) => {
-		list.innerText = ''
-		data.forEach(item => {
-			var node = document.createElement("li");
-			node.draggable = true
-			node.style.backgroundColor = item
-			node.style.backgroundColor = node.style.backgroundColor.length > 0
-				? item : 'lightblue'
-			node.addEventListener('drag', setDragging)
-			node.addEventListener('dragover', setDraggedOver)
-			node.addEventListener('drop', compare)
-			node.innerText = item
-			list.appendChild(node)
+				let div = document.createElement('div');
+				div.style = "display: flex;align-items: center;justify-content: center;height: 100%;";
+				div.classList.add('uk-float-right');
+				let button = document.createElement('button');
+				button.innerText = "DELETE";
+				button.classList.add('uk-button', 'uk-button-danger');
+				button.setAttribute('uk-tooltip', 'This feature is not available')
+
+				div.appendChild(button)
+				node.appendChild(image);
+				node.appendChild(div);
+				document.getElementById('list').appendChild(node);
+			});
 		})
+		.then(() => {
+			createSortable("#list");
+		})
+
+	function createSortable(selector) {
+		var sortable = document.querySelector(selector);
+		Draggable.create(sortable.children, {
+			type: "y",
+			bounds: sortable,
+			edgeResistance: 1,
+			onPress: sortablePress,
+			onDragStart: sortableDragStart,
+			onDrag: sortableDrag,
+			liveSnap: sortableSnap,
+			onDragEnd: sortableDragEnd
+		});
 	}
 
+	function sortablePress(event) {
+		var t = this.target,
+			i = 0,
+			child = t;
 
+		while (child = child.previousSibling) {
+			if (child.nodeType === 1) i++;
+		}
 
-	const setDraggedOver = (e) => {
-		e.preventDefault();
-		draggedOver = Number.isNaN(parseInt(e.target.innerText)) ? e.target.innerText : parseInt(e.target.innerText)
+		t.currentIndex = i;
+		t.currentHeight = 80;
+		t.kids = Array.prototype.slice.call(t.parentNode.children, 0);
 	}
 
-	const setDragging = (e) => {
-		dragging = Number.isNaN(parseInt(e.target.innerText)) ? e.target.innerText : parseInt(e.target.innerText)
+	function sortableDragStart() {
+		TweenLite.set(this.target, { color: "#88CE02" });
+	}
+
+	function sortableDrag() {
+
+		var t = this.target,
+			elements = t.kids.slice(0), // clone      
+			indexChange = Math.round(this.y / t.currentHeight),
+			bound1 = t.currentIndex,
+			bound2 = bound1 + indexChange;
+
+		if (bound1 < bound2) { // moved down
+			TweenLite.to(elements.splice(bound1 + 1, bound2 - bound1), 0.15, { yPercent: -150 });
+			TweenLite.to(elements, 0.15, { yPercent: 0 });
+		} else if (bound1 === bound2) {
+			elements.splice(bound1, 1);
+			TweenLite.to(elements, 0.15, { yPercent: 0 });
+		} else { // moved up
+			TweenLite.to(elements.splice(bound2, bound1 - bound2), 0.15, { yPercent: 150 });
+			TweenLite.to(elements, 0.15, { yPercent: 0 });
+		}
+	}
+
+	function sortableSnap(y) {
+
+		var h = this.target.currentHeight;
+		return Math.round(y / h) * h;
+	}
+
+	function sortableDragEnd() {
+
+		var t = this.target,
+			max = t.kids.length - 1,
+			yPos = this.y || endY,
+			newIndex = Math.round(this.y / t.currentHeight);
+
+		newIndex += (newIndex < 0 ? -1 : 0) + t.currentIndex;
+		if (newIndex === max) {
+			t.parentNode.appendChild(t);
+		} else {
+			t.parentNode.insertBefore(t, t.kids[newIndex + 1]);
+		}
+		TweenLite.set(t.kids, { yPercent: 0, overwrite: "all" });
+		TweenLite.set(t, { y: 0, color: "" });
 	}
 </script>
 <script>
