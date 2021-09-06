@@ -18,7 +18,16 @@
 
 <body>
 	<div class="uk-container">
-		<div class="uk-text-lead">Admin Settings</div>
+		<div class="uk-text-lead">
+			<span>Admin Settings</span>
+			<a href="/" target="_blank">
+				<span class="uk-link uk-text-small">
+					<span uk-icon="icon: link"></span>
+					<span>Produnction page</span>
+				</span>
+			</a>
+
+		</div>
 		<ul uk-tab uk-switcher>
 			<li class="uk-active"><a>Teams Section</a></li>
 			<li><a>Sponsor Section</a></li>
@@ -33,9 +42,9 @@
 		</ul>
 	</div>
 	<% const Teams=['A', 'B' ]; %>
-	<% Teams.forEach((team)=> { %>
-		<%- include('TeamEditor', { team }); %>
-	<% }); %>
+		<% Teams.forEach((team)=> { %>
+			<%- include('TeamEditor', { team }); %>
+				<% }); %>
 </body>
 
 <script>
