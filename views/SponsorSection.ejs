@@ -2,29 +2,12 @@
 	<input type="file" name="file" style="display: none;" />
 </form>
 
-<ul class="uk-list uk-list-divider" id="list">
-	<li>List item 1</li>
-	<li>List item 2</li>
-	<li>List item 3</li>
-</ul>
+<ul class="uk-list uk-list-divider" id="list"></ul>
 <script>
 	var list = document.getElementById('list')
 	var base, randomized, dragging, draggedOver;
-	var isRight = 'Not In Order!';
-
-	const genRandom = (array) => {
-		base = array.slice()
-		randomized = array.sort(() => Math.random() - 0.5)
-		if (randomized.join("") !== base.join("")) {
-			renderItems(randomized)
-		} else {
-			//recursion to account if the randomization returns the original array
-			genRandom()
-		}
-	}
 
 	const renderItems = (data) => {
-		document.getElementById('isRight').innerText = isRight
 		list.innerText = ''
 		data.forEach(item => {
 			var node = document.createElement("li");
@@ -40,17 +23,6 @@
 		})
 	}
 
-	const compare = (e) => {
-		var index1 = randomized.indexOf(dragging);
-		var index2 = randomized.indexOf(draggedOver);
-		randomized.splice(index1, 1)
-		randomized.splice(index2, 0, dragging)
-
-		isRight = randomized.join("") === base.join("")
-			? 'In Order!' : 'Not In Order!'
-
-		renderItems(randomized)
-	};
 
 
 	const setDraggedOver = (e) => {
@@ -61,9 +33,6 @@
 	const setDragging = (e) => {
 		dragging = Number.isNaN(parseInt(e.target.innerText)) ? e.target.innerText : parseInt(e.target.innerText)
 	}
-
-	// genRandom([0, 1, 2, 3, 4, 5, 6])
-	genRandom(['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'])
 </script>
 <script>
 	const SponsorUpload = new Dropzone("#sponsorUpload", {
