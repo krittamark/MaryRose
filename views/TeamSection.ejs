@@ -1,49 +1,24 @@
-<div>
-	<span>Team A : </span><span id="NameA"></span>
-	<span class="uk-link" href="#TeamA-Editor" uk-toggle onclick="">
-		<span uk-icon="icon: pencil"></span>
-		<span>Edit</span>
-	</span>
-
-
-</div>
-<div>
-	<span>Team B : </span><span id="NameB"></span>
-	<span class="uk-link" href="#TeamB-Editor" uk-toggle onclick="">
-		<span uk-icon="icon: pencil"></span>
-		<span>Edit</span>
-	</span>
-
+<div class="uk-child-width-1-2@m uk-grid-small uk-grid-match uk-margin-small" uk-grid>
+	<% const Teams=['A', 'B' ]; %>
+	<% Teams.forEach((team)=> { %>
+		<div>
+			<%- include('TeamCard', { team }); %>
+		</div>
+	<% }); %>
 
 </div>
-<div>
-	<div>
-		<img src="/uploads/LogoA.png" id="TeamA-Logo">
-		<button id="ScoreA-Decrease" class="uk-button uk-button-secondary uk-button-small"
-			onclick="updateScore('A', Number(document.getElementById('ScoreA').value) - 1)">-</button>
-		<input id="ScoreA" class="uk-input uk-form-small uk-form-width-xsmall" type="number"
-			onchange="updateScore('A', this.value)">
-		<button id="ScoreA-Increase" class="uk-button uk-button-secondary uk-button-small"
-			onclick="updateScore('A', Number(document.getElementById('ScoreA').value) + 1)">+</button>
-	</div>
-	<div>
-		<img src="/uploads/LogoB.png" id="TeamB-Logo">
-		<button id="ScoreB-Decrease" class="uk-button uk-button-secondary uk-button-small"
-			onclick="updateScore('B', Number(document.getElementById('ScoreB').value) - 1)">-</button>
-		<input id="ScoreB" class="uk-input uk-form-small uk-form-width-xsmall" type="number"
-			onchange="updateScore('B', this.value)">
-		<button id="ScoreB-Increase" class="uk-button uk-button-secondary uk-button-small"
-			onclick="updateScore('B', Number(document.getElementById('ScoreB').value) + 1)">+</button>
-	</div>
+
+<div class="uk-card uk-card-default uk-card-body">
+	<h3 class="uk-card-title">Production Visibility</h3>
+	<button id="hideBar" class="uk-button uk-button-default" onclick="socket.emit('element', {action: 'hideBar'})">Hide
+		Score bar</button>
+	<button id="showBar" class="uk-button uk-button-default" onclick="socket.emit('element', {action: 'showBar'})">Show
+		Score bar</button>
+	<button id="hideSpon" class="uk-button uk-button-default"
+		onclick="socket.emit('element', {action: 'hideSpon'})">Hide
+		Sponsors</button>
+	<button id="showSpon" class="uk-button uk-button-default"
+		onclick="socket.emit('element', {action: 'showSpon'})">Show
+		Sponsors</button>
 </div>
-
-<button id="reset" class="uk-button uk-button-danger" onclick="socket.emit('resetSystem', 'score')">Reset Score</button>
-
-<button id="hideBar" class="uk-button uk-button-default"
-	onclick="socket.emit('element', {action: 'hideBar'})">HideBar</button>
-<button id="showBar" class="uk-button uk-button-default"
-	onclick="socket.emit('element', {action: 'showBar'})">ShowBar</button>
-<button id="hideSpon" class="uk-button uk-button-default"
-	onclick="socket.emit('element', {action: 'hideSpon'})">HideSpon</button>
-<button id="showSpon" class="uk-button uk-button-default"
-	onclick="socket.emit('element', {action: 'showSpon'})">ShowSpon</button>
+<button id="reset" class="uk-button uk-button-danger uk-margin-small" onclick="socket.emit('resetSystem', 'score')">Reset Score</button>

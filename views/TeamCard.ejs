@@ -1,0 +1,27 @@
+<div class="uk-card uk-card-default uk-card-body">
+	<h3 class="uk-card-title uk-text-center">
+		<span id="Name<%= team %>"></span>
+		<span class="uk-link" href="#Team<%= team %>-Editor" uk-toggle onclick="">
+			<span uk-icon="icon: pencil"></span>
+			<span>Edit</span>
+		</span>
+	</h3>
+
+	<div class="uk-flex uk-flex-center">
+		<img src="/uploads/Logo<%= team %>.png" class="uk-margin-small" id="Team<%= team %>-Logo" style="height:20vh;">
+	</div>
+	<div class="uk-flex uk-flex-center">
+		<button
+			id="Score<%= team %>-Decrease"
+			class="uk-button uk-button-secondary uk-text-large"
+			onclick="updateScore('<%= team %>', Number(document.getElementById('Score<%= team %>').value) - 1)">-</button>
+		<input 
+			id="Score<%= team %>"
+			class="uk-input uk-form-width-small uk-text-center" type="number"
+			onchange="updateScore('<%= team %>', this.value)">
+		<button 
+			id="Score<%= team %>-Increase" 
+			class="uk-button uk-button-secondary uk-text-large"
+			onclick="updateScore('<%= team %>', Number(document.getElementById('Score<%= team %>').value) + 1)">+</button>
+	</div>
+</div>
