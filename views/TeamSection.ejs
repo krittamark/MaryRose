@@ -40,14 +40,3 @@
 	onclick="socket.emit('element', {action: 'showSpon'})">ShowSpon</button>
 
 
-<script>
-	const LogoAUpload = new Dropzone("#LogoA-Upload", {
-		url: `/api/logo/A`
-	});
-	LogoAUpload.on("complete", function (file) {
-		LogoAUpload.removeAllFiles(true);
-	})
-	const LogoBUpload = new Dropzone("#LogoB-Upload", {
-		url: `/api/logo/B`
-	});
-</script>

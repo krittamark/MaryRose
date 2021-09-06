@@ -24,14 +24,18 @@
 			<li><a>Sponsor Section</a></li>
 		</ul>
 		<ul class="uk-switcher">
-			<li><%- include('TeamSection'); %></li>
-			<li><%- include('SponsorSection'); %></li>
+			<li>
+				<%- include('TeamSection'); %>
+			</li>
+			<li>
+				<%- include('SponsorSection'); %>
+			</li>
 		</ul>
 	</div>
-	<% const Teams = ['A', 'B']; %>
-	<% Teams.forEach((team) => { %>
-		<%- include('TeamEditor', { team }); %>
-	<% }); %>
+	<% const Teams=['A', 'B' ]; %>
+		<% Teams.forEach((team)=> { %>
+			<%- include('TeamEditor', { team }); %>
+				<% }); %>
 </body>
 
 <script>
@@ -56,6 +60,17 @@
 		document.getElementById('NameB').innerText = data.TeamB.Name;
 		document.getElementById('A-NameValue').value = data.TeamA.Name;
 		document.getElementById('B-NameValue').value = data.TeamB.Name;
+	});
+</script>
+<script>
+	const LogoAUpload = new Dropzone("#LogoA-Upload", {
+		url: `/api/logo/A`
+	});
+	LogoAUpload.on("complete", function (file) {
+		LogoAUpload.removeAllFiles(true);
+	})
+	const LogoBUpload = new Dropzone("#LogoB-Upload", {
+		url: `/api/logo/B`
 	});
 </script>
 
