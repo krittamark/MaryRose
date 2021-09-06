@@ -1,0 +1,53 @@
+<div>
+	<span>Team A : </span><span id="NameA"></span>
+	<span class="uk-link" href="#TeamA-Editor" uk-toggle onclick="">
+		<span uk-icon="icon: pencil"></span>
+		<span>Edit</span>
+	</span>
+	<button id="ScoreA-Decrease" class="uk-button uk-button-secondary uk-button-small"
+		onclick="updateScore('A', Number(document.getElementById('ScoreA').value) - 1)">-</button>
+	<input id="ScoreA" class="uk-input uk-form-small uk-form-width-xsmall" type="number"
+		onchange="updateScore('A', this.value)">
+	<button id="ScoreA-Increase" class="uk-button uk-button-secondary uk-button-small"
+		onclick="updateScore('A', Number(document.getElementById('ScoreA').value) + 1)">+</button>
+
+</div>
+<div>
+	<span>Team B : </span><span id="NameB"></span>
+	<span class="uk-link" href="#TeamB-Editor" uk-toggle onclick="">
+		<span uk-icon="icon: pencil"></span>
+		<span>Edit</span>
+	</span>
+	<button id="ScoreB-Decrease" class="uk-button uk-button-secondary uk-button-small"
+		onclick="updateScore('B', Number(document.getElementById('ScoreB').value) - 1)">-</button>
+	<input id="ScoreB" class="uk-input uk-form-small uk-form-width-xsmall" type="number"
+		onchange="updateScore('B', this.value)">
+	<button id="ScoreB-Increase" class="uk-button uk-button-secondary uk-button-small"
+		onclick="updateScore('B', Number(document.getElementById('ScoreB').value) + 1)">+</button>
+
+</div>
+
+
+<button id="reset" class="uk-button uk-button-danger" onclick="socket.emit('resetSystem', 'score')">Reset Score</button>
+
+<button id="hideBar" class="uk-button uk-button-default"
+	onclick="socket.emit('element', {action: 'hideBar'})">HideBar</button>
+<button id="showBar" class="uk-button uk-button-default"
+	onclick="socket.emit('element', {action: 'showBar'})">ShowBar</button>
+<button id="hideSpon" class="uk-button uk-button-default"
+	onclick="socket.emit('element', {action: 'hideSpon'})">HideSpon</button>
+<button id="showSpon" class="uk-button uk-button-default"
+	onclick="socket.emit('element', {action: 'showSpon'})">ShowSpon</button>
+
+
+<script>
+	const LogoAUpload = new Dropzone("#LogoA-Upload", {
+		url: `/api/logo/A`
+	});
+	LogoAUpload.on("complete", function (file) {
+		LogoAUpload.removeAllFiles(true);
+	})
+	const LogoBUpload = new Dropzone("#LogoB-Upload", {
+		url: `/api/logo/B`
+	});
+</script>

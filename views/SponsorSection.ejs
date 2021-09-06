@@ -1,0 +1,9 @@
+<form class="dropzone" id="sponsorUpload">
+	<input type="file" name="file" style="display: none;" />
+</form>
+
+<script>
+	const SponsorUpload = new Dropzone("#sponsorUpload", {
+		url: "/api/sponsors"
+	});Í
+</script>

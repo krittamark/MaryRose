@@ -10,6 +10,7 @@ const socket = require('../middlewares/socket');
 
 const server = (port) => {
 
+    app.disable('x-powered-by');
     app.set('view engine', 'ejs');
     app.disable('x-powered-by');
     //app.use(logger);
