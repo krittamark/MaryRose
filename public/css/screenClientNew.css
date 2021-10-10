@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Titillium Web", Arial, Helvetica, sans-serif;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+	background: rgba(0, 0, 0, 0);
+}
+
+.centerScore {
+	position: relative;
+	height: 47px;
+	width: 56.5%;
+	top: 86px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+}
+
+.TeamWrapper {
+	position: absolute;
+	width: 466px;
+	height: 47px;
+}
+
+.TeamA {
+	margin-left: 59px;
+}
+
+.TeamB {
+	margin-left: 559px;
+}
+
+.scorebox {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: 4px solid #fff;
+	transform: rotate(45deg);
+}
+
+.TeamA>.score>.scorebox:nth-child(1) {
+	top: 12px;
+    right: 74px;
+}
+
+.TeamA>.score>.scorebox:nth-child(2) {
+	top: 12px;
+    right: 111px;
+}
+
+.TeamB>.score>.scorebox:nth-child(1) {
+	top: 12px;
+    left: 74px;
+}
+
+.TeamB>.score>.scorebox:nth-child(2) {
+	top: 12px;
+    left: 111px;
+}
+
+.TeamA .scorebox.active {
+	border-color: #fa4454;
+	transition: .2s ease-in-out;
+}
+
+.TeamB .scorebox.active {
+	border-color: #34dbf4;
+	transition: .2s ease-in-out;
+}
+.TeamB > .arrow {
+	transform: rotate(180deg) translateY(71px);
+}
+#A-Logo {
+	height: 30px;
+    position: absolute;
+    top: -50px;
+    right: 564px;
+}
+#A-Name {
+	height: 30px;
+	position: absolute;
+	top: -49px;
+	right: 636px;
+	width: 200px;
+	text-align: right;
+	color: #fff;
+}
+#B-Logo {
+	height: 30px;
+    position: absolute;
+    top: -50px;
+    left: 564px;
+}
+#B-Name {
+	height: 30px;
+	position: absolute;
+	top: -49px;
+	left: 636px;
+	width: 200px;
+	text-align: left;
+	color: #fff;
+}
+
+.Logo {
+	position: absolute;
+    top: -54px;
+    right: 531px;
+    height: 37px;
+}
+.Name {
+	position: absolute;
+    top: -54px;
+    right: 613px;
+    height: 37px;
+}
+
+
+
+
+.sponsorSection {
+	width: 150px;
+	height: 45px;
+	position: absolute;
+	right: 0;
+	top: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.sponsorSection>img {
+	height: 45px;
+}
+
+.sponsor-item {
+	position: absolute;
+	left: 0;
+}
