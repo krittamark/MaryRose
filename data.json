@@ -1,32 +1,23 @@
 {
 	"TeamA": {
 		"Score": 0,
-		"Name": "SHARP.ES"
+		"Name": "Chongkog"
 	},
 	"TeamB": {
 		"Score": 0,
-		"Name": "REDMARKER"
+		"Name": "Masterbait"
 	},
-	"Sponsors": [
-		{
-			"Logo": {
-				"src": "/uploads/sponsors/SKRLogo-NoBackground.png"
-			}
-		},
-		{
-			"Logo": {
-				"src": "/uploads/sponsors/AVELogo-RedNoBackground.png"
-			}
-		},
-		{
-			"Logo": {
-				"src": "/uploads/sponsors/SKR-Stream.png"
-			}
-		},
-		{
-			"Logo": {
-				"src": "/uploads/sponsors/PRLogo-PinkWithText.png"
-			}
+	"Sponsors": [{
+		"Logo": {
+			"src": "/uploads/sponsors/AVELogo-RedNoBackground.png"
 		}
-	]
+	}, {
+		"Logo": {
+			"src": "/uploads/sponsors/SKR-Stream.png"
+		}
+	}, {
+		"Logo": {
+			"src": "/uploads/sponsors/PRLogo-PinkWithText.png"
+		}
+	}]
 }
