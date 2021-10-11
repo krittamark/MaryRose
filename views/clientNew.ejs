@@ -53,7 +53,7 @@
 <script src="/js/axios.min.js"></script>
 <script src="/js/socket.io.min.js"></script>
 <script>
-	const memory = [];
+	let memory = [];
 	const socket = io();
 	socket.on('syncData', data => {
 		document.getElementById('A-Name').innerText = data.TeamA.Name;
