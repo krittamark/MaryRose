@@ -10,15 +10,21 @@
 
 <div class="uk-card uk-card-default uk-card-body">
 	<h3 class="uk-card-title">Production Visibility</h3>
-	<button id="hideBar" class="uk-button uk-button-default" onclick="socket.emit('element', {action: 'hideBar'})">Hide
+	<button id="hideBar" class="uk-button uk-button-default" onclick="socket.emit('element', {action: 'hideBar'});UIkit.notification({message: `<span uk-icon=\'icon: check\'></span> The '${this.innerText.toLowerCase()}' command has been sent.`, status: 'success'})">Hide
 		Score bar</button>
-	<button id="showBar" class="uk-button uk-button-default" onclick="socket.emit('element', {action: 'showBar'})">Show
-		Score bar</button>
+	<button id="showBar" class="uk-button uk-button-default" onclick="socket.emit('element', {action: 'showBar'});UIkit.notification({message: `<span uk-icon=\'icon: check\'></span> The '${this.innerText.toLowerCase()}' command has been sent.`, status: 'success'})">Show
+		Score bar</button><br>
 	<button id="hideSpon" class="uk-button uk-button-default"
-		onclick="socket.emit('element', {action: 'hideSpon'})">Hide
+		onclick="socket.emit('element', {action: 'hideSpon'});UIkit.notification({message: `<span uk-icon=\'icon: check\'></span> The '${this.innerText.toLowerCase()}' command has been sent.`, status: 'success'})">Hide
 		Sponsors</button>
 	<button id="showSpon" class="uk-button uk-button-default"
-		onclick="socket.emit('element', {action: 'showSpon'})">Show
-		Sponsors</button>
+		onclick="socket.emit('element', {action: 'showSpon'});UIkit.notification({message: `<span uk-icon=\'icon: check\'></span> The '${this.innerText.toLowerCase()}' command has been sent.`, status: 'success'})">Show
+		Sponsors</button><br>
+	<button id="hideScore" class="uk-button uk-button-default"
+		onclick="socket.emit('element', {action: 'hideScore'});UIkit.notification({message: `<span uk-icon=\'icon: check\'></span> The '${this.innerText.toLowerCase()}' command has been sent.`, status: 'success'})">Hide
+		Score</button>
+	<button id="showScore" class="uk-button uk-button-default"
+		onclick="socket.emit('element', {action: 'showScore'});UIkit.notification({message: `<span uk-icon=\'icon: check\'></span> The '${this.innerText.toLowerCase()}' command has been sent.`, status: 'success'})">Show
+		Score</button><br>
 </div>
 <button id="reset" class="uk-button uk-button-danger uk-margin-small" onclick="socket.emit('resetSystem', 'score')">Reset Score</button>

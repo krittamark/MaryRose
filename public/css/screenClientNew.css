@@ -67,13 +67,8 @@ body {
     left: 111px;
 }
 
-.TeamA .scorebox.active {
-	border-color: #fa4454;
-	transition: .2s ease-in-out;
-}
-
-.TeamB .scorebox.active {
-	border-color: #34dbf4;
+.scorebox.active {
+	background: #fff;
 	transition: .2s ease-in-out;
 }
 .TeamB > .arrow {
