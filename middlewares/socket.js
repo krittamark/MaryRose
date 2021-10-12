@@ -25,7 +25,7 @@ module.exports = (http) => {
 			Data[`Team${target}`]['Score'] = Number(value);
 
 			server.emit('syncData', Data);
-
+			
 			let data = JSON.stringify(Data);
 			fs.writeFileSync('./data.json', data);
 		});
@@ -59,11 +59,6 @@ module.exports = (http) => {
 							"Name": ""
 						},
 						"Sponsors": [
-							{
-								"Logo": {
-									"src": "/uploads/sponsors/SKRLogo-NoBackground.png"
-								}
-							},
 							{
 								"Logo": {
 									"src": "/uploads/sponsors/AVELogo-RedNoBackground.png"
