@@ -58,7 +58,7 @@
 	socket.on('syncData', data => {
 		document.getElementById('A-Name').innerText = data.TeamA.Name;
 		document.getElementById('B-Name').innerText = data.TeamB.Name;
-		
+
 
 		document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
 			element.className = 'scorebox animate__animated animate__fadeIn';
@@ -79,30 +79,13 @@
 					}
 				});
 				break;
-				
+
 			default:
 				document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
 					element.className = 'scorebox active animate__animated animate__fadeIn';
 				});
 				break;
-				switch (data.TeamA.Score) {
-			case 0:
-				
-				break;
-			case 1:
-				document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
-					if (index == 1) {
-						element.className = 'scorebox active animate__animated animate__fadeIn';
-					}
-				});
-				break;
-				
-			default:
-				document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
-					element.className = 'scorebox active animate__animated animate__fadeIn';
-				});
-				break;
-		}}
+		}
 
 		switch (data.TeamB.Score) {
 			case 0:
@@ -117,14 +100,14 @@
 					}
 				});
 				break;
-				
+
 			default:
 				document.querySelector('.TeamB > .score').childNodes.forEach((element, index) => {
 					element.className = 'scorebox active animate__animated animate__fadeIn';
 				});
 				break;
 		}
-		
+
 	});
 
 	socket.on('element', message => {
