@@ -123,10 +123,9 @@ body {
 
 .sponsorSection {
 	width: 150px;
-	height: 45px;
-	position: absolute;
-	right: 0;
-	top: 20px;
+	height: 66px;
+    position: absolute;
+    right: -48px;
 	display: flex;
 	align-items: center;
 }
