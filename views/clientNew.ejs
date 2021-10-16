@@ -56,7 +56,7 @@
 		document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
 			element.className = 'scorebox animate__animated animate__fadeIn';
 		});
-		
+
 		switch (data.TeamA.Score) {
 			case 0:
 				document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
@@ -83,22 +83,19 @@
 		document.querySelector('.TeamB > .score').childNodes.forEach((element, index) => {
 			element.className = 'scorebox animate__animated animate__fadeIn';
 		});
-		
+
 		switch (data.TeamB.Score) {
 			case 0:
 				document.querySelector('.TeamB > .score').childNodes.forEach((element, index) => {
 					element.className = 'scorebox animate__animated animate__fadeIn';
 				});
-				console.log(0);
 				break;
 			case 1:
 				document.querySelector('.TeamB > .score').childNodes.forEach((element, index) => {
 					if (index == 1) {
 						element.className = 'scorebox active animate__animated animate__fadeIn';
 					}
-					console.log(element);
 				});
-				console.log(1)
 				break;
 
 			default:
@@ -151,6 +148,33 @@
 				document.querySelectorAll('.score').forEach(element => {
 					element.className = 'score animate__animated animate__fadeInDown';
 				});
+				break;
+			case "toggleColor":
+				let TeamALogo = document.querySelector('.TeamA > .arrow > .Logo');
+				let TeamAName = document.querySelector('.TeamA > .arrow > .Name');
+				let TeamBLogo = document.querySelector('.TeamB > .arrow > .Logo');
+				let TeamBName = document.querySelector('.TeamB > .arrow > .Name');
+
+				console.log(TeamALogo.src);
+				if (TeamALogo.src == "http://krittamark.com:100/images/RedLogo.svg") {
+					TeamALogo.src = "http://krittamark.com:100/images/BlueLogo.svg";
+					TeamAName.src = "http://krittamark.com:100/images/BlueName.svg";
+					TeamBLogo.src = "http://krittamark.com:100/images/RedLogo.svg";
+					TeamBName.src = "http://krittamark.com:100/images/RedName.svg";
+				} else {
+					TeamBLogo.src = "http://krittamark.com:100/images/BlueLogo.svg";
+					TeamBName.src = "http://krittamark.com:100/images/BlueName.svg";
+					TeamALogo.src = "http://krittamark.com:100/images/RedLogo.svg";
+					TeamAName.src = "http://krittamark.com:100/images/RedName.svg";
+				}
+				break;
+			case "switchTeam":
+
+				let c = document.querySelector('.TeamA').innerHTML;
+				let d = document.querySelector('.TeamB').innerHTML;
+
+				document.querySelector('.TeamB').innerHTML = c;
+				document.querySelector('.TeamA').innerHTML = d;
 				break;
 
 			default:

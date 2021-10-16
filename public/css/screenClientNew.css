@@ -74,13 +74,13 @@ body {
 .TeamB > .arrow {
 	transform: rotate(180deg) translateY(71px);
 }
-#A-Logo {
+.TeamA .logo {
 	height: 30px;
     position: absolute;
     top: -50px;
     right: 564px;
 }
-#A-Name {
+.TeamA .name {
 	height: 30px;
 	position: absolute;
 	top: -49px;
@@ -89,13 +89,13 @@ body {
 	text-align: right;
 	color: #fff;
 }
-#B-Logo {
+.TeamB .logo {
 	height: 30px;
     position: absolute;
     top: -50px;
     left: 564px;
 }
-#B-Name {
+.TeamB .name {
 	height: 30px;
 	position: absolute;
 	top: -49px;
@@ -123,7 +123,7 @@ body {
 
 .sponsorSection {
 	width: 150px;
-	height: 66px;
+	height: 7px;
     position: absolute;
     right: -48px;
 	display: flex;
