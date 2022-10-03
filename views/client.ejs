@@ -84,6 +84,15 @@
 				document.querySelector('.sponsorSection').className = 'sponsorSection animate__animated animate__fadeInRight';
 				break;
 
+			case "switchTeam":
+				let teamA = document.querySelector('.TeamA').querySelector('.content').innerHTML;
+				let teamB = document.querySelector('.TeamB').querySelector('.content').innerHTML;
+				
+				document.querySelector('.TeamA').querySelector('.content').innerHTML = teamB;
+				document.querySelector('.TeamB').querySelector('.content').innerHTML = teamA;
+
+				break;
+
 			default:
 				break;
 		}
