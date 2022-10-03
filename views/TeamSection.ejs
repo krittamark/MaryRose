@@ -31,6 +31,9 @@
 	<button id="switchTeam" class="uk-button uk-button-default"
 		onclick="socket.emit('element', {action: 'switchTeam'});UIkit.notification({message: `<span uk-icon=\'icon: check\'></span> The '${this.innerText.toLowerCase()}' command has been sent.`, status: 'success'})">Switch
 		Team</button><br>
+	<button id="switchTeam" class="uk-button uk-button-default"
+		onclick="socket.emit('element', {action: 'toggleColor'});UIkit.notification({message: `<span uk-icon=\'icon: check\'></span> The '${this.innerText.toLowerCase()}' command has been sent.`, status: 'success'})">Switch
+		Color</button><br>
 </div>
 <button id="reset" class="uk-button uk-button-danger uk-margin-small"
 	onclick="socket.emit('resetSystem', 'score')">Reset Score</button>

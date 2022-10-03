@@ -16,6 +16,7 @@
 			<div class="score">
 				<div class="scorebox animate__animated animate__fadeIn"></div>
 				<div class="scorebox animate__animated animate__fadeIn"></div>
+				<div class="scorebox animate__animated animate__fadeIn"></div>
 			</div>
 			<div class="arrow">
 				<img src="/images/RedLogo.svg" class="Logo animate__animated animate__fadeInRight">
@@ -29,6 +30,7 @@
 
 		<div class="TeamB TeamWrapper animate__animated" id="B-Main">
 			<div class="score">
+				<div class="scorebox animate__animated animate__fadeIn"></div>
 				<div class="scorebox animate__animated animate__fadeIn"></div>
 				<div class="scorebox animate__animated animate__fadeIn"></div>
 			</div>
@@ -53,57 +55,23 @@
 		document.getElementById('A-Name').innerText = data.TeamA.Name;
 		document.getElementById('B-Name').innerText = data.TeamB.Name;
 
-		document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
-			element.className = 'scorebox animate__animated animate__fadeIn';
-		});
-
-		switch (data.TeamA.Score) {
-			case 0:
-				document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
-					element.className = 'scorebox animate__animated animate__fadeIn';
-				});
-				console.log(0);
-				break;
-			case 1:
-				document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
-					if (index == 1) {
-						element.className = 'scorebox active animate__animated animate__fadeIn';
-					}
-					console.log(element);
-				});
-				console.log(1)
-				break;
-
-			default:
-				document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
-					element.className = 'scorebox active animate__animated animate__fadeIn';
-				});
-				break;
-		}
 		document.querySelector('.TeamB > .score').childNodes.forEach((element, index) => {
-			element.className = 'scorebox animate__animated animate__fadeIn';
+			if (index%2 === 0) return
+			if (index/2 <= data.TeamB.Score) {
+				element.className = 'scorebox active animate__animated animate__fadeIn';
+			} else {
+				element.className = 'scorebox animate__animated animate__fadeIn';
+			}
 		});
-
-		switch (data.TeamB.Score) {
-			case 0:
-				document.querySelector('.TeamB > .score').childNodes.forEach((element, index) => {
-					element.className = 'scorebox animate__animated animate__fadeIn';
-				});
-				break;
-			case 1:
-				document.querySelector('.TeamB > .score').childNodes.forEach((element, index) => {
-					if (index == 1) {
-						element.className = 'scorebox active animate__animated animate__fadeIn';
-					}
-				});
-				break;
-
-			default:
-				document.querySelector('.TeamB > .score').childNodes.forEach((element, index) => {
-					element.className = 'scorebox active animate__animated animate__fadeIn';
-				});
-				break;
-		}
+		document.querySelector('.TeamA > .score').childNodes.forEach((element, index) => {
+			if (index%2 === 0) return
+			if (index/2 <= data.TeamA.Score) {
+				element.className = 'scorebox active animate__animated animate__fadeIn';
+			} else {
+				element.className = 'scorebox animate__animated animate__fadeIn';
+			}
+		});
+		
 
 
 	});
@@ -156,16 +124,16 @@
 				let TeamBName = document.querySelector('.TeamB > .arrow > .Name');
 
 				console.log(TeamALogo.src);
-				if (TeamALogo.src == "http://krittamark.com:100/images/RedLogo.svg") {
-					TeamALogo.src = "http://krittamark.com:100/images/BlueLogo.svg";
-					TeamAName.src = "http://krittamark.com:100/images/BlueName.svg";
-					TeamBLogo.src = "http://krittamark.com:100/images/RedLogo.svg";
-					TeamBName.src = "http://krittamark.com:100/images/RedName.svg";
+				if (TeamALogo.src == window.location.origin + "/images/RedLogo.svg") {
+					TeamALogo.src = window.location.origin + "/images/BlueLogo.svg";
+					TeamAName.src = window.location.origin + "/images/BlueName.svg";
+					TeamBLogo.src = window.location.origin + "/images/RedLogo.svg";
+					TeamBName.src = window.location.origin + "/images/RedName.svg";
 				} else {
-					TeamBLogo.src = "http://krittamark.com:100/images/BlueLogo.svg";
-					TeamBName.src = "http://krittamark.com:100/images/BlueName.svg";
-					TeamALogo.src = "http://krittamark.com:100/images/RedLogo.svg";
-					TeamAName.src = "http://krittamark.com:100/images/RedName.svg";
+					TeamBLogo.src = window.location.origin + "/images/BlueLogo.svg";
+					TeamBName.src = window.location.origin + "/images/BlueName.svg";
+					TeamALogo.src = window.location.origin + "/images/RedLogo.svg";
+					TeamAName.src = window.location.origin + "/images/RedName.svg";
 				}
 				break;
 			case "switchTeam":
