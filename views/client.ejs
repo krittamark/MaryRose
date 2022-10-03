@@ -87,9 +87,16 @@
 			case "switchTeam":
 				let teamA = document.querySelector('.TeamA').querySelector('.content').innerHTML;
 				let teamB = document.querySelector('.TeamB').querySelector('.content').innerHTML;
-				
+
 				document.querySelector('.TeamA').querySelector('.content').innerHTML = teamB;
 				document.querySelector('.TeamB').querySelector('.content').innerHTML = teamA;
+
+				document.querySelector('.TeamA').querySelector('.content').forEach(el => {
+					el.id = el.id.replace('B', 'A');
+				})	
+				document.querySelector('.TeamB').querySelector('.content').forEach(el => {
+					el.id = el.id.replace('A', 'B');
+				})	
 
 				break;
 
